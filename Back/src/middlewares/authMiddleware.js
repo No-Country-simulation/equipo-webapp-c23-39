@@ -1,21 +1,39 @@
-// middleware/authMiddleware.js
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const authMiddleware = (req, res, next) => {
-  const token = req.headers['authorization'];
-  
-  if (!token) {
-    return res.status(401).json({ message: 'Acceso denegado, se requiere token' });
+const authMiddleware = (roles = []) => {
+ 
+  if (typeof roles === "string") {
+    roles = [roles];
   }
 
-  try {
-    
-    const verified = jwt.verify(token.split(' ')[1], process.env.JWT_SECRET_KEY);
-    req.adminId = verified.adminId;  
-    next();  
-} catch (error) {
-    res.status(400).json({ message: 'Token inválido' });  
-}
-}
+  return (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    if (!authHeader) {
+      return res.status(401).json({ message: 'Acceso denegado, se requiere token' });
+    }
+
+    try {
+      
+      const token = authHeader.split(' ')[1];
+      if (!token) {
+        return res.status(401).json({ message: 'Acceso denegado, token no encontrado' });
+      }
+
+      const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+      
+      req.user = decoded;
+
+      
+      if (roles.length && !roles.includes(decoded.role)) {
+        return res.status(403).json({ message: 'Permiso denegado, rol no autorizado' });
+      }
+
+      next();
+    } catch (error) {
+      return res.status(400).json({ message: 'Token inválido' });
+    }
+  };
+};
+
 module.exports = authMiddleware;
