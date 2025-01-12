@@ -16,7 +16,7 @@ export default function Home() {
     >
       <Navbar />
  
-      <div className="relative z-10 flex flex-col justify-center items-center">
+      <div className="relative z-10 flex flex-col justify-center items-center background-blur">
         <Bot size={50} color="black" />
         <div className="flex flex-col justify-center items-center mt-7 w-full max-w-4xl py-3">
           <TextAnimate 
