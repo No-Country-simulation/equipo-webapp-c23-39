@@ -1,5 +1,4 @@
 import InteractiveForm from "./components/InteractiveForm";
-import Particles from "../components/ui/particles";
 import { TextAnimate } from "../components/ui/text-animate";
 import { Bot } from "lucide-react";
 import Navbar from "./components/navbar/Navbar";

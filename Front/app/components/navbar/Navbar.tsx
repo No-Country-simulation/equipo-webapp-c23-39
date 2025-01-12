@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link";
-import { Bot, Send, Menu, Settings } from 'lucide-react'
+import { Bot, Send} from 'lucide-react'
 
 
 export default function Navbar() {
