@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tweet Craft
 
-## Getting Started
+Tweet Craft is an AI-powered application built with Next.js that generates tweets based on user descriptions. By using Gemini's API, the app enables users to easily craft tweets based on their input, making it perfect for those looking for quick and creative social media content.
+Video Link : https://vimeo.com/1043260556?share=copy
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **AI Tweet Generation**: Users provide a description, and the app generates a tweet based on the input.
+- **Gemini API Integration**: The app utilizes Gemini's API to process natural language descriptions and create tweets.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js (>= 18.0)
+- npm or yarn (package manager)
 
-## Learn More
+### Steps to Get Started
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    ```bash
+    git clone https://github.com/Jagroop2001/tweet-craft
+    cd tweet-craft
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Install the dependencies:
 
-## Deploy on Vercel
+    ```bash
+    npm install
+    # OR
+    yarn install
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Set up your Gemini API key:
+   - Create a `.env.local` file in the root of the project.
+   - Add your Gemini API key to the file:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    ```bash
+    GEMINI_AI_API_KEY="YOUR GEMINI API KEY"
+    ```
+
+4. Run the development server:
+
+    ```bash
+    npm run dev
+    # OR
+    yarn dev
+    ```
+
+    The app will be available at [http://localhost:3000](http://localhost:3000).
+
+## Usage
+
+1. Open the app in your browser.
+2. Enter a description of the tweet you want to generate.
+3. The app will communicate with Gemini's API to generate a tweet based on your input.
+4. You can then use or modify the generated tweet before posting it.
+
+## Contributing
+
+Contributions are welcome! If you have any ideas for features or improvements, feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
