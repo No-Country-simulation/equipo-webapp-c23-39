@@ -2,16 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import { BsArrowRightCircle } from "react-icons/bs";
+import ReactMarkdown from 'react-markdown'; 
 
 export default function InteractiveForm() {
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<{ sender: string; content: string }[]>([]);
   const [loading, setLoading] = useState(false);
-  const [isValid, setIsValid] = useState(false); // NOTA: Aqui el Estado para controlar la validez del texto
+  const [isValid, setIsValid] = useState(false);
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
 
- 
     if (value.trim() && value.length >= 10) {
       setIsValid(true);
     } else {
@@ -23,7 +23,7 @@ export default function InteractiveForm() {
     e.preventDefault();
     const description = e.target.description.value;
 
-    setMessages((prev) => [...prev, `Tú: ${description}`]);
+    setMessages((prev) => [...prev, { sender: 'Tú', content: description }]);
     e.target.reset();
     setLoading(true);
 
@@ -39,22 +39,21 @@ export default function InteractiveForm() {
     setLoading(false);
 
     if (result.message) {
-      setMessages((prev) => [...prev, `Bot: ${result.message}`]);
+      setMessages((prev) => [...prev, { sender: 'Bot', content: result.message }]);
       scrollToBottom();
     } else {
       console.error('Error:', result.error);
     }
 
-    setIsValid(false); // NOTA : Desactiva el botón después de enviar
+    setIsValid(false);
   };
 
   const handleCopy = () => {
-    const botMessages = messages.filter((msg) => msg.startsWith('Bot:'));
-    const lastBotMessage = botMessages[botMessages.length - 1]; // NOTA: Último mensaje del bot
+    const botMessages = messages.filter((msg) => msg.sender === 'Bot');
+    const lastBotMessage = botMessages[botMessages.length - 1]?.content;
 
     if (lastBotMessage) {
-      const messageToCopy = lastBotMessage.replace('Bot: ', '');
-      navigator.clipboard.writeText(messageToCopy);
+      navigator.clipboard.writeText(lastBotMessage);
       alert('Mensaje copiado al portapapeles!');
     }
   };
@@ -71,14 +70,20 @@ export default function InteractiveForm() {
   }, [messages]);
 
   return (
-    <div className="w-full">
       <div id="chat-content" className="flex flex-col space-y-4">
         {messages.map((msg, index) => (
-          <p key={index} className="text-white">
-            {msg}
-          </p>
+          <div
+            key={index}
+            className={`
+              flex flex-col p-4 rounded-lg 
+              ${msg.sender === 'Bot' ? 'bg-gray-800 text-white self-start' : 'bg-violet-600 text-white self-end'}
+              max-w-lg w-fit shadow-md
+            `}
+          >
+            <p className="font-bold mb-2">{msg.sender}:</p>
+            <ReactMarkdown className="prose prose-invert">{msg.content}</ReactMarkdown>
+          </div>
         ))}
-      </div>
       <form onSubmit={handleSubmit} className="mt-4">
         <div className="relative">
           <textarea
@@ -118,15 +123,14 @@ export default function InteractiveForm() {
               disabled:opacity-50 
               disabled:cursor-not-allowed
             "
-            disabled={!isValid || loading} // NOTA: Botón desactivado si no es válido o está cargando
+            disabled={!isValid || loading}
           >
             <BsArrowRightCircle size={30} />
           </button>
         </div>
       </form>
 
-      {/* NOTA : Botón para copiar el último mensaje del bot */}
-      {messages.some((msg) => msg.startsWith('Bot:')) && (
+      {messages.some((msg) => msg.sender === 'Bot') && (
         <div className="mt-6 text-white">
           <div className="flex gap-4 mt-4">
             <button

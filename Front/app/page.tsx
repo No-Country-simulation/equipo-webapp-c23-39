@@ -1,4 +1,5 @@
 import InteractiveForm from "./components/InteractiveForm";
+import Particles from "../components/ui/particles";
 import { TextAnimate } from "../components/ui/text-animate";
 import { Bot } from "lucide-react";
 import Navbar from "./components/navbar/Navbar";
@@ -8,7 +9,7 @@ export default function Home() {
     <div
       className="flex flex-col justify-between items-center w-full h-screen"
       style={{
-        backgroundImage: "url('/fondo.webp')",
+        backgroundImage: "url('/fondo-chat.jpeg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -26,15 +27,16 @@ export default function Home() {
             ¿En qué puedo ayudarte?
           </TextAnimate>
         </div>
-
-       
         <div
           id="chat-content"
-          className="flex flex-col flex-grow space-y-4 overflow-y-auto"
+          className="flex-grow overflow-y-auto p-4 space-y-4 bg-opacity-60 bg-black rounded-lg"
+          style={{
+            maxHeight: "calc(100vh - 150px)", 
+          }}
         >
-         
-        </div>
         <InteractiveForm />
+        </div>
+
       </div>
     </div>
   );
