@@ -16,7 +16,7 @@ exports.register = async (req, res) => {
     const newUser = await User.create({ email, password, name, language });
     return res.status(201).json({
       message: 'Usuario registrado exitosamente',
-      user: { id: newUser.id, email: newUser.email, name: newUser.name },
+      user: { id: newUser.userId, email: newUser.email, name: newUser.name },
     });
   } catch (error) {
     console.error('Error en el registro:', error);
@@ -40,7 +40,7 @@ exports.login = async (req, res) => {
     }
 
     // Crear un token JWT
-    const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET_KEY, {
+    const token = jwt.sign({ id: user.userId, role: user.role }, process.env.JWT_SECRET_KEY, {
       expiresIn: '1h',
     });
 

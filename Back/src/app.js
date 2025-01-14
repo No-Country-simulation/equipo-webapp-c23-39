@@ -5,7 +5,7 @@ const helmet = require("helmet");
 const languageMiddleware = require("./middlewares/languaje");
 const routes = require("./routes");
 
-const allowedOrigins = ["http://localhost:5173"];
+const allowedOrigins = ["http://localhost:3001"];
 
 const app = express();
 
