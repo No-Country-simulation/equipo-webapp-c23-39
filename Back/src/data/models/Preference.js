@@ -2,11 +2,15 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "Chat",
+    "Preference",
     {
-      content: {
+      type: {
+        type: DataTypes.ENUM('adventure', 'activities', 'hobbies', 'places', 'accommodation'),
+        allowNull: false,
+      },
+      value: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       userId: {
         type: DataTypes.INTEGER,
@@ -15,15 +19,6 @@ module.exports = (sequelize) => {
           model: 'Users', // Nombre de la tabla de usuarios
           key: 'id',
         },
-      },
-      date: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW,
-      },
-      topic: {
-        type: DataTypes.STRING,
-        allowNull: true,
       },
     },
     {
