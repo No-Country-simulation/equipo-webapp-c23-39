@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
         validate: {
-          len: [6, 100], // Contraseñas seguras
+          len: [6, 100], 
         },
       },
       name: {
@@ -39,7 +39,7 @@ module.exports = (sequelize) => {
       },
     },
     {
-      paranoid: true, // Soft delete habilitado
+      paranoid: true, 
       hooks: {
         beforeCreate: async (user) => {
           if (user.password) {
