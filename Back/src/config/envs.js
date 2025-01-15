@@ -9,6 +9,7 @@ module.exports = {
     DB_DEPLOY: process.env.DB_DEPLOY,
     PORT : process.env.PORT,
     JWT_SECRET_KEY: process.env.JWT_SECRET_KEY,
+    GEMINI_API_KEY: process.env.GEMINI_API_KEY
    
     
    
