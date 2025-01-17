@@ -6,15 +6,14 @@ import { Bot, Send} from 'lucide-react'
 export default function Navbar() {
 
   return (
-    <nav className="w-full flex bg-white bg-opacity-30 p-2 m-2">
+    <nav className="w-full flex bg-white bg-opacity-30 p-2">
         <Link href={'/'} className="flex items-center">  
-        <span>Migo Trip</span>
-        <Bot className="h-6 w-6" />
-        </Link>
-        <div className="flex flex-1"></div>
         
+        <Bot size={30} color="black" />
+        </Link>
+        <div className="flex p-1"></div>
+        <p className="font-extrabold">MigoTrip</p>
        
-     
     </nav>
   )
 }
