@@ -52,7 +52,18 @@ exports.login = async (req, res) => {
 };
 
 // Obtener el perfil de usuario
-exports.profile = (req, res) => {
+exports.profile = async (req, res) => {
   const { user } = req;
-  return res.status(200).json({ message: `Bienvenido, ${user.name}`, user });
+
+  try {
+    const userProfile = await User.findByPk(user.id);
+    if (!userProfile) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    return res.status(200).json({ message: `Bienvenido, ${userProfile.name}`, user: userProfile });
+  } catch (error) {
+    console.error('Error obteniendo el perfil:', error);
+    return res.status(500).json({ message: 'Error obteniendo el perfil', error: error.message });
+  }
 };
