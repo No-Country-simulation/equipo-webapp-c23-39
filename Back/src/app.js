@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const session = require('express-session');
 const helmet = require("helmet");
 const languageMiddleware = require("./middlewares/languaje");
 const routes = require("./routes");
@@ -17,6 +18,7 @@ app.use(languageMiddleware);
 
 // Parseo de JSON
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Configuración de CORS
 app.use(cors({
@@ -34,9 +36,17 @@ app.use(cors({
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
-
+// const crypto = require('crypto');
+// const secret = crypto.randomBytes(64).toString('hex');
+// console.log(secret);
 // Rutas
 app.use("/", routes);
+
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'your_fallback_secret_key', // Usar una variable de entorno para la clave secreta
+  resave: false,
+  saveUninitialized: true,
+}));
 
 // Manejo global de errores
 app.use((err, req, res, next) => {

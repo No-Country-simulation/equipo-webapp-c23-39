@@ -9,8 +9,9 @@ module.exports = {
     DB_DEPLOY: process.env.DB_DEPLOY,
     PORT : process.env.PORT,
     JWT_SECRET_KEY: process.env.JWT_SECRET_KEY,
-    GEMINI_API_KEY: process.env.GEMINI_API_KEY
-   
-    
-   
+    GEMINI_API_KEY: process.env.GEMINI_API_KEY,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET:process.env.GOOGLE_CLIENT_SECRET,
+    NEXTAUTH_URL:process.env.NEXTAUTH_URL,
+    SESSION_SECRET:process.env.SESSION_SECRET,
 }  
