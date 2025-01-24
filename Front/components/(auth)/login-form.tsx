@@ -58,7 +58,12 @@ export const LoginForm = () => {
 
 
     return(
-        <div className="h-screen flex items-center justify-center">
+        <div className="h-screen flex items-center justify-center"
+        style={{ backgroundImage: 'url("/pantalla-inicial.jpg")',
+            backgroundSize: 'cover', 
+            backgroundPosition: 'center' 
+            
+        }}>
             <div className="w-full max-w-md  p-6 rounded-lg ">
                 <CardWrapper
                     headerLabel="Bienvenido de nuevo"

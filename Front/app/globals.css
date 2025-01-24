@@ -4,12 +4,50 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  /* background-image: url('/fondo.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; */
-
 }
+
+
+
+#chat-content {
+  max-height: 500px; 
+  overflow-y: auto;
+  scrollbar-width: thin; /* Para navegadores basados en Firefox */
+  scrollbar-color: #4b5563 #1a1a1a; /* Color del scroll y del fondo */
+}
+
+/* Estilo para navegadores basados en WebKit */
+#chat-content::-webkit-scrollbar {
+  width: 8px; /* Ancho del scroll */
+  height: 8px; /* Alto del scroll (para scroll horizontal, si existe) */
+}
+
+#chat-content::-webkit-scrollbar-thumb {
+  background-color: #4b5563; /* Color del scroll */
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+#chat-content::-webkit-scrollbar-thumb:hover {
+  background-color: #6b7280; /* Color cuando se pasa el cursor por encima */
+}
+
+#chat-content::-webkit-scrollbar-track {
+  background-color: #1a1a1a; /* Color del fondo del track */
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+@keyframes loading-bar {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+.animate-loading-bar {
+  animation: loading-bar 2s infinite linear;
+  transform-origin: left;
+}
+
 @keyframes bounce {
   0% {
     transform: translateY(0);

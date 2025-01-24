@@ -23,9 +23,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body
-      className="bg-cover bg-center h-screen" // Clases de Tailwind para cubrir y centrar la imagen
+      className="bg-cover bg-center h-screen" 
       style={{ backgroundImage: 'url("/fondo-chat.jpeg")' }} // Cambia la ruta a tu imagen
       >
         {children}
