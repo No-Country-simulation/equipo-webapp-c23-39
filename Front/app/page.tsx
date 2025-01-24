@@ -46,7 +46,7 @@ export default function Home() {
       <img
         src="/robot/migo-trip.png" 
         alt="Robot"
-        className="w-25 h-30 object-cover"
+        className="w-25 h-29 object-cover"
         style={{ position: 'absolute', top: '0', marginTop: '299px' }}
       />
     </div>

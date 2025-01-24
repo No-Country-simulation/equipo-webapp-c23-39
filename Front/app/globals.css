@@ -4,12 +4,9 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  /* background-image: url('/fondo.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; */
-
 }
+
+
 
 #chat-content {
   max-height: 500px; 
