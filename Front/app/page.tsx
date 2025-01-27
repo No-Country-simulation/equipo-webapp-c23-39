@@ -16,10 +16,18 @@ export default function Home() {
   const chatContentRef = useRef<HTMLDivElement>(null);
   
   return (
-    <div className="flex h-screen bg-[#1a1a2e]">
+    <div className="flex h-screen"
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: 0,
+    }}>
       {/* Sidebar */}
      
-      <div className="w-72 bg-[#0f0f1a]/80 backdrop-blur-md p-4 flex flex-col gap-4">
+      <div className="w-50 bg-[#0C3257]/80 backdrop-blur-md p-3 flex flex-col gap-4 h-full">
         <div className="flex items-center gap-3 p-2">
           {/* <Avatar>
             <AvatarImage src="/placeholder.svg" />
@@ -46,8 +54,8 @@ export default function Home() {
       <img
         src="/robot/migo-trip.png" 
         alt="Robot"
-        className="w-25 h-29 object-cover"
-        style={{ position: 'absolute', top: '0', marginTop: '299px' }}
+        className="w-25 h-25 object-cover"
+        style={{ position: 'absolute', top: '0', marginTop: '260px' }}
       />
     </div>
       </div>
@@ -55,15 +63,10 @@ export default function Home() {
       {/* Main Content */}
       <div
         className="flex-1 flex flex-col items-center justify-between p-4 relative"
-        style={{
-          backgroundImage: `url("/fondo-chat.jpeg")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+       
       >
         <div className="w-full max-w-4xl mx-auto mt-20">
         <Navbar />
-        <div className="flex flex-col items-center mb-4 mt-6">
           <TextAnimate
             animation="blurInUp"
              by="character"
@@ -71,9 +74,22 @@ export default function Home() {
            >
              ¿Que Lugar te Gustaria Visitar?
            </TextAnimate>
-           </div>
-        </div>
 
+           <div
+              className="w-full max-w-3xl mx-auto mb-8 bg-opacity-30 bg-black rounded-lg"
+              style={{ marginTop: '100px' }}
+            >
+              <div className="relative mb-8">
+                <InteractiveForm />
+              </div>
+            </div>
+
+           <div className="ml-0 mt-4">
+
+          
+          </div>
+
+        </div>
         <div
           id="chat-content"
           ref={chatContentRef}
@@ -81,21 +97,20 @@ export default function Home() {
                       overflow-y-auto 
                       p-3 space-y-4 
                       bg-opacity-60
-                      max-h-[500px] 
+                      max-h-[400px] 
                       scrollbar-thin 
                       scrollbar-thumb-gray-600 
                       scrollbar-track-gray-800 
                       scrollbar-thumb-rounded-md
-                      
                       "
          >
         </div>
-        <div className="w-full max-w-3xl mx-auto mb-8 bg-opacity-60 bg-black rounded-lg ">
+        {/* <div className="w-full max-w-3xl mx-auto mb-8 bg-opacity-60 bg-black rounded-lg ">
           <div  className="relative">
           <InteractiveForm />
            
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )
