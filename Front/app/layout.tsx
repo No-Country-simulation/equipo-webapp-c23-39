@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tweet Craft",
+  title: "Migo-Trip",
   description: "A Next.js application that generates tweets based on user descriptions.",
 };
 
@@ -25,7 +25,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#040506]`}
+      className="bg-cover bg-center h-screen" // Clases de Tailwind para cubrir y centrar la imagen
+      style={{ backgroundImage: 'url("/fondo-chat.jpeg")' }} // Cambia la ruta a tu imagen
       >
         {children}
       </body>
