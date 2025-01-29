@@ -31,12 +31,12 @@ passport.use(
   )
 );
 
-  // Serialización del usuario
+
   passport.serializeUser((user, done) => {
     done(null, user.n_document);
   });
 
-  // Deserialización del usuario
+
   passport.deserializeUser(async (user, done) => {
     done(null, user);
   });

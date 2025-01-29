@@ -1,9 +1,16 @@
 const { Chat, User } = require('../data');
-
 exports.saveChat = async (req, res) => {
   const { userId, content, topic } = req.body;
+  const CONTENT_MAX_LENGTH = 5000; 
 
   try {
+    // Validar la longitud del contenido
+    if (content.length > CONTENT_MAX_LENGTH) {
+      return res.status(400).json({ 
+        message: `El contenido excede el límite máximo de ${CONTENT_MAX_LENGTH} caracteres`
+      });
+    }
+
     const user = await User.findByPk(userId);
     if (!user) {
       return res.status(404).json({ message: 'Usuario no encontrado' });

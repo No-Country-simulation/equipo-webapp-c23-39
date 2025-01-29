@@ -29,7 +29,7 @@ exports.chatWithGemini = async (req, res) => {
       return res.status(400).json({ message: 'El bot solo responde sobre itinerarios y turismo.' });
     }
 
-    // Obtener las preferencias del usuario
+    
     const preferences = await Preference.findAll({ where: { userId } });
 
     // Formatear las preferencias en un string para enviar a Gemini
