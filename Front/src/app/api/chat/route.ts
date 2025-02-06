@@ -40,7 +40,7 @@ export async function POST(req: Request) {
 
   try {
     const genAI = new GoogleGenerativeAI(API_KEY);
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
     const prompt = `Como asistente de viajes experto, proporciona:
     1. Recomendaciones de lugares económicos
     2. Opciones de alojamiento con precios
@@ -53,10 +53,10 @@ export async function POST(req: Request) {
     if (result && result.response) {
       const generatedText = await result.response.text();
 
-      // Guardar el mensaje en la base de datos
+   
       const chat = await prisma.chat.create({
         data: {
-          userId: userId ?? null, // Usa null si userId es null o undefined
+          userId: userId ?? null, 
           description,
           response: generatedText,
         },
@@ -64,7 +64,7 @@ export async function POST(req: Request) {
 
       return NextResponse.json({
         message: generatedText,
-        chatId: chat.id, // Opcional: devolver el ID del chat creado
+        chatId: chat.id, 
       });
     } else {
       throw new Error('No se recibió respuesta del modelo.');
